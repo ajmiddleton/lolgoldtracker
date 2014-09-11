@@ -3,9 +3,13 @@
     .col-md-1
     .col-md-10
       h1 Welcome to LoLGoldTracker!
-      form
-        .form-group
-          p Enter your summoner name
-          input[id="name" type="text" name="summonerName" placeholder="Summoner Name"]
-        button.btn.btn-default[type="submit"] Track
+      = form_for @summoner do |f|
+        = f.input :name
+        = f.submit
+
+      / form[id="summoner"]
+      /   .form-group
+      /     p Enter your summoner name
+      /     input[id="name" type="text" name="name" placeholder="Summoner Name"]
+      /   button.btn.btn-default[type="submit"] Track
     .col-md-1

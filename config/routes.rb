@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'home#index'
+  root to: 'summoners#index'
+
+  resources :summoners, only: [:index, :create, :show]
 end
