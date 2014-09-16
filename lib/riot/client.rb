@@ -1,6 +1,6 @@
-require './riot_api'
-require './summoner_request'
-require './match_history_request'
+require './lib/riot/riot_api'
+require './lib/riot/summoner_request'
+require './lib/riot/match_history_request'
 
 class Client
   attr_accessor :region
