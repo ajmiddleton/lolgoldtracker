@@ -4,10 +4,8 @@ class SummonersController < ApplicationController
   end
 
   def create
-    @submitted_name = summoner_params["name"]
-    @summoner = Summoner.new
-    @summoner = @summoner.api_lookup @submitted_name
-    @summoner = @summoner.to_s
+    @summoner = Summoner.new.find_or_create_by_name(summoner_params["name"])
+    redirect_to summoner_matches_path(@summoner)
   end
 
   protected

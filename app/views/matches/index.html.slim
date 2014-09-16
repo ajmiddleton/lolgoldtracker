@@ -1,0 +1,23 @@
+p Matches Index for #{@summoner.name}
+- @matches.each do |match|
+  p= match["queueType"]
+  ul
+    li Gold Earned: #{match.gold_earned}
+    li Gold Spent: #{match.gold_spent}
+    li Match creation: #{match.match_creation}
+    li Match id: #{match.match_id}
+    li Winner: #{match.winner}
+    li Match duration: #{match.match_duration}
+    ul
+      li= match.match_timeline.first_creeps_per_min_deltas
+      li= match.match_timeline.second_creeps_per_min_deltas
+      li= match.match_timeline.third_creeps_per_min_deltas
+      li= match.match_timeline.end_creeps_per_min_deltas
+      li= match.match_timeline.first_cs_diff_per_min_deltas
+      li= match.match_timeline.second_cs_diff_per_min_deltas
+      li= match.match_timeline.third_cs_diff_per_min_deltas
+      li= match.match_timeline.end_cs_diff_per_min_deltas
+      li= match.match_timeline.first_gold_per_min_deltas
+      li= match.match_timeline.second_gold_per_min_deltas
+      li= match.match_timeline.third_gold_per_min_deltas
+      li= match.match_timeline.end_gold_per_min_deltas
