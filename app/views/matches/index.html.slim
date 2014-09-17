@@ -1,23 +1,22 @@
 p Matches Index for #{@summoner.name}
-- @matches.each do |match|
-  p= match["queueType"]
+- @summoner.matches.each do |match|
   ul
     li Gold Earned: #{match.gold_earned}
     li Gold Spent: #{match.gold_spent}
-    li Match creation: #{match.match_creation}
-    li Match id: #{match.match_id}
+    li Match creation: #{match.match_creation.to_s}
+    li Riot Match id: #{match.riot_match_id}
     li Winner: #{match.winner}
     li Match duration: #{match.match_duration}
     ul
-      li= match.match_timeline.first_creeps_per_min_deltas
-      li= match.match_timeline.second_creeps_per_min_deltas
-      li= match.match_timeline.third_creeps_per_min_deltas
-      li= match.match_timeline.end_creeps_per_min_deltas
-      li= match.match_timeline.first_cs_diff_per_min_deltas
-      li= match.match_timeline.second_cs_diff_per_min_deltas
-      li= match.match_timeline.third_cs_diff_per_min_deltas
-      li= match.match_timeline.end_cs_diff_per_min_deltas
-      li= match.match_timeline.first_gold_per_min_deltas
-      li= match.match_timeline.second_gold_per_min_deltas
-      li= match.match_timeline.third_gold_per_min_deltas
-      li= match.match_timeline.end_gold_per_min_deltas
+      li first creeps per min deltas: #{match.match_timeline.first_creeps_per_min_deltas}
+      li second creeps per min deltas: #{match.match_timeline.second_creeps_per_min_deltas}
+      li third creeps per min deltas: #{match.match_timeline.third_creeps_per_min_deltas}
+      li end creeps per min deltas: #{match.match_timeline.end_creeps_per_min_deltas}
+      li first cs diff per min deltas: #{match.match_timeline.first_cs_diff_per_min_deltas}
+      li second cs diff per min deltas: #{match.match_timeline.second_cs_diff_per_min_deltas}
+      li third cs diff per min deltas: #{match.match_timeline.third_cs_diff_per_min_deltas}
+      li end cs diff per min deltas: #{match.match_timeline.end_cs_diff_per_min_deltas}
+      li first gold per min deltas: #{match.match_timeline.first_gold_per_min_deltas}
+      li second gold per min deltas: #{match.match_timeline.second_gold_per_min_deltas}
+      li third gold per min deltas: #{match.match_timeline.third_gold_per_min_deltas}
+      li end gold per min deltas: #{match.match_timeline.end_gold_per_min_deltas}

@@ -2,7 +2,7 @@ class MatchesController < ApplicationController
   before_action :load_summoner
 
   def index
-    @matches = Match.new.import_match_history @summoner.participant_id
+    Match.new.import_match_history @summoner
   end
 
   protected

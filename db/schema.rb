@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140916204738) do
     t.integer  "gold_earned"
     t.integer  "gold_spent"
     t.datetime "match_creation"
-    t.integer  "match_id"
+    t.integer  "riot_match_id"
     t.boolean  "winner"
     t.integer  "match_duration"
     t.datetime "created_at"
