@@ -6,6 +6,7 @@ class Summoner < ActiveRecord::Base
 
   def find_or_create_by_name name
     api_summoner = api_lookup name
+    return api_summoner if api_summoner == "Bad Request"
     summoner = Summoner.find_by_name(api_summoner["name"])
     if summoner
       summoner

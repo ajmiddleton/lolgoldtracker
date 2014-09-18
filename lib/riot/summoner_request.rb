@@ -6,6 +6,7 @@ class SummonerRequest < RiotApi
   def by_name name
     name = CGI.escape name.downcase.gsub(/\s/, '')
     response = perform_request(api_url("summoner/by-name/#{name}"))
+    return response if response == "Bad Request"
     response[response.keys[0]]
   end
 

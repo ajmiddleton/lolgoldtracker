@@ -19,6 +19,6 @@ class RiotApi
   def perform_request url
     uri = URI(url)
     res = Net::HTTP.get_response(uri)
-    res = JSON.parse(res.body)
+    res.code == "404" ? "Bad Request" : JSON.parse(res.body)
   end
 end
