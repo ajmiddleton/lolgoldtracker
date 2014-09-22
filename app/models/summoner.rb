@@ -15,6 +15,26 @@ class Summoner < ActiveRecord::Base
     end
   end
 
+  def avg_gold_earned
+    matches.average(:gold_earned).round(2)
+  end
+
+  def avg_gold_spent
+    matches.average(:gold_spent).round(2)
+  end
+
+  def avg_match_duration
+    matches.average(:match_duration).round(2)
+  end
+
+  def readable_avg_match_duration
+    "#{(avg_match_duration / 60).round} minutes #{(avg_match_duration % 60).round} seconds"
+  end
+
+  def avg_gold_per_min
+    (avg_gold_earned / (avg_match_duration / 60)).round(2)
+  end
+
   protected
 
   def client

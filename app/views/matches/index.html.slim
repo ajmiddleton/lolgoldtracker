@@ -1,12 +1,20 @@
 p Matches Index for #{@summoner.name}
+p Average gold earned: #{@summoner.avg_gold_earned}
+p Average gold spent: #{@summoner.avg_gold_spent}
+p Average match duration: #{@summoner.readable_avg_match_duration}
+p Average gold per min: #{@summoner.avg_gold_per_min}
 - @summoner.matches.each do |match|
   ul
+    li Match Mode: #{match.match_mode}
+    li Queue Type: #{match.queue_type}
     li Gold Earned: #{match.gold_earned}
     li Gold Spent: #{match.gold_spent}
     li Match creation: #{match.match_creation.to_s}
     li Riot Match id: #{match.riot_match_id}
     li Winner: #{match.winner}
     li Match duration: #{match.match_duration}
+    li Kills: #{match.kills}
+    li Deaths: #{match.deaths}
     ul
       li first creeps per min deltas: #{match.match_timeline.first_creeps_per_min_deltas}
       li second creeps per min deltas: #{match.match_timeline.second_creeps_per_min_deltas}
