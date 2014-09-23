@@ -11,6 +11,7 @@ nav.navbar.navbar-default.navbar-fixed-top
 
     .collapse.navbar-collapse
       form.navbar-form.navbar-left[id="summoner" action="/summoners"  method="POST"]
+        = hidden_field_tag :authenticity_token, form_authenticity_token
         input.form-control.col-lg-8[type="text" placeholder="Search" name="summoner[name]"]
 
       ul.nav.navbar-nav

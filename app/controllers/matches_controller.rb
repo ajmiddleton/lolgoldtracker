@@ -3,6 +3,8 @@ class MatchesController < ApplicationController
 
   def index
     Match.new.import_match_history @summoner
+    gon.gold_earned_vs_gold_spent = @summoner.gold_earned_vs_gold_spent
+    gon.gold_per_min = @summoner.gold_per_min
   end
 
   protected

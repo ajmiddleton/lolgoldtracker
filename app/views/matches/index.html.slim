@@ -1,8 +1,25 @@
-p Matches Index for #{@summoner.name}
-p Average gold earned: #{@summoner.avg_gold_earned}
-p Average gold spent: #{@summoner.avg_gold_spent}
-p Average match duration: #{@summoner.readable_avg_match_duration}
-p Average gold per min: #{@summoner.avg_gold_per_min}
+.page-header
+  h1 Gold Data for #{@summoner.name}
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title At a Glance
+  .panel-body
+    h3.page-header Games Tracked: #{@summoner.matches.count}
+    .row
+      .col-md-3
+        h4 Average gold earned: #{@summoner.avg_gold_earned}
+      .col-md-3
+        h4 Average gold spent: #{@summoner.avg_gold_spent}
+      .col-md-3
+        h4 Average match duration: #{@summoner.readable_avg_match_duration}
+      .col-md-3
+        h4 Average gold per min: #{@summoner.avg_gold_per_min}
+    h3.page-header Gold Earned vs Gold Spent
+    .chart-box[id="goldEarnedvsGoldSpent"]
+    h3.page-header Gold Per Minute
+    .chart-box[id="goldPerMin"]
+    h3.page-header Creeps Per Match
+    .chart-box[id="creepsPerMatch"]
 - @summoner.matches.each do |match|
   ul
     li Match Mode: #{match.match_mode}
@@ -28,3 +45,4 @@ p Average gold per min: #{@summoner.avg_gold_per_min}
       li second gold per min deltas: #{match.match_timeline.second_gold_per_min_deltas}
       li third gold per min deltas: #{match.match_timeline.third_gold_per_min_deltas}
       li end gold per min deltas: #{match.match_timeline.end_gold_per_min_deltas}
+== javascript_include_tag "matches-index"

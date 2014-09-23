@@ -34,6 +34,22 @@ class Summoner < ActiveRecord::Base
   def avg_gold_per_min
     (avg_gold_earned / (avg_match_duration / 60)).round(2)
   end
+#/
+  def gold_earned_vs_gold_spent
+    matches_array = []
+    matches.each do |m|
+      matches_array << {creation: m.match_creation.strftime("%B %d, %Y"), gold_earned: m.gold_earned, gold_spent: m.gold_spent}
+    end
+    matches_array
+  end
+
+  def gold_per_min
+    matches_array = []
+    matches.each do |m|
+      matches_array << {creation: m.match_creation.strftime("%B %d, %Y"), gold_per_min: (m.gold_earned / m.match_duration_minutes)}
+    end
+    matches_array
+  end
 
   protected
 

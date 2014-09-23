@@ -1,4 +1,5 @@
 require './lib/riot/client'
+require 'date'
 
 class Match < ActiveRecord::Base
   VALID_MATCH_TYPES = ["NORMAL_5x5_BLIND", "RANKED_SOLO_5x5", "RANKED_PREMADE_5x5", "NORMAL_5x5_DRAFT", "RANKED_TEAM_5x5", "GROUP_FINDER_5x5"]
@@ -12,6 +13,9 @@ class Match < ActiveRecord::Base
     import matches, summoner
   end
 
+  def match_duration_minutes
+    match_duration / 60
+  end
   protected
 
   def client
@@ -25,7 +29,7 @@ class Match < ActiveRecord::Base
         queue_type: match["queueType"],
         gold_earned: match["participants"][0]["stats"]["goldEarned"],
         gold_spent: match["participants"][0]["stats"]["goldSpent"],
-        match_creation: Time.at(match["matchCreation"]).to_datetime,
+        match_creation: DateTime.strptime("#{match["matchCreation"] / 1000}",'%s'),
         riot_match_id: match["matchId"],
         winner: match["participants"][0]["stats"]["winner"],
         match_duration: match["matchDuration"],
