@@ -16,6 +16,11 @@ class Match < ActiveRecord::Base
   def match_duration_minutes
     match_duration / 60
   end
+
+  def timeline_data
+    {creeps_per_min: match_timeline.creeps_per_min_array, gold_per_min: match_timeline.gold_per_min_array}
+  end
+
   protected
 
   def client

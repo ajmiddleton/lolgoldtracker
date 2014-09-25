@@ -5,7 +5,6 @@ html
     title
       = content_for?(:title) ? yield(:title) : 'LoLGoldTracker'
     meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Lolgoldtracker'}"
-    == include_gon
     == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => true
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
     == csrf_meta_tags

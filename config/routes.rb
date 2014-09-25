@@ -2,6 +2,6 @@ Rails.application.routes.draw do
   root to: 'summoners#index'
 
   resources :summoners, only: [:index, :create, :show] do
-    resources :matches, only: [:index]
+    resources :matches, only: [:index, :show]
   end
 end

@@ -1,0 +1,25 @@
+.page-header
+  h1 Match Data for #{link_to @summoner.name, summoner_matches_path(@summoner)} on #{@match.match_creation}
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Stats
+  .panel-body
+    h3.page-header #{@match.winner ? "Win" : "Loss"}
+    .row
+      .col-md-3
+        h4 Kills: #{@match.kills}
+      .col-md-3
+        h4 Deaths: #{@match.deaths}
+      .col-md-3
+        h4 Gold earned: #{@match.gold_earned}
+      .col-md-3
+        h4 Gold spent: #{@match.gold_spent}
+    .row
+      .col-md-3
+        h4 Match duration: #{@match.match_duration_minutes.round}
+    h3.page-header Creeps per minute
+    .chart-box[id="creepsPerMin"]
+    h3.page-header Gold per minute
+    .chart-box[id="goldPerMin"]
+== include_gon
+== javascript_include_tag "matches-show"

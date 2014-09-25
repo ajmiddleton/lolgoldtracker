@@ -5,34 +5,34 @@
 
   function init(){
     console.log(gon);
-    populateIndexCharts();
+    populateTimelineCharts();
   }
 
-  function populateIndexCharts(){
-    populateGoldEarnedvsGoldSpent();
-    populateGoldPerMin();
+  function populateTimelineCharts(){
+    populateCreepsPerMin();
+    populateTimelineGoldPerMin();
   }
 
-  function populateGoldEarnedvsGoldSpent(){
-    $('#goldEarnedvsGoldSpent').highcharts({
+  function populateCreepsPerMin(){
+    $('#creepsPerMin').highcharts({
       chart: {
             type: 'area'
         },
         title: {
-            text: 'Gold Earned vs Gold Spent'
+            text: 'Creeps Per Minute'
         },
         subtitle: {
           text: ''
         },
         xAxis: {
             title: {
-              text: 'Matches'
+              text: 'Minutes'
             },
-            categories: gon.gold_earned_vs_gold_spent.map(function(data){return data.creation})
+            categories: ["0-10", "10-20", "20-30", "30-end"]
         },
         yAxis: {
             title: {
-                text: 'Gold'
+                text: 'Creeps per Minute'
             },
             labels: {
                 formatter: function () {
@@ -58,16 +58,13 @@
             }
         },
         series: [{
-            name: 'Gold Earned',
-            data: gon.gold_earned_vs_gold_spent.map(function(data){ return data.gold_earned;})
-        }, {
-            name: 'Gold Spent',
-            data: gon.gold_earned_vs_gold_spent.map(function(data){ return data.gold_spent;})
+            name: 'Creeps',
+            data: gon.timeline_data.creeps_per_min
         }]
     });
   }
 
-  function populateGoldPerMin(){
+  function populateTimelineGoldPerMin(){
     $('#goldPerMin').highcharts({
       chart: {
             type: 'area'
@@ -80,9 +77,9 @@
         },
         xAxis: {
             title: {
-              text: 'Matches'
+              text: 'Minutes'
             },
-            categories: gon.gold_per_min.map(function(data){return data.creation})
+            categories: ["0-10", "10-20", "20-30", "30-end"]
         },
         yAxis: {
             title: {
@@ -113,7 +110,7 @@
         },
         series: [{
             name: 'Gold Per Minute',
-            data: gon.gold_per_min.map(function(data){ return data.gold_per_min;})
+            data: gon.timeline_data.gold_per_min
         }]
     });
   }

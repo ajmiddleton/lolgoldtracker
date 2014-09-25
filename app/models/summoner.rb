@@ -2,6 +2,7 @@ require './lib/riot/client'
 
 class Summoner < ActiveRecord::Base
   has_many :matches
+  has_many :match_timelines, through: :matches
   validates_presence_of :name
 
   def find_or_create_by_name name
@@ -49,6 +50,22 @@ class Summoner < ActiveRecord::Base
       matches_array << {creation: m.match_creation.strftime("%B %d, %Y"), gold_per_min: (m.gold_earned / m.match_duration_minutes)}
     end
     matches_array
+  end
+
+  def avg_first_creeps_per_min
+    match_timelines.average(:first_creeps_per_min_deltas).round(2)
+  end
+
+  def avg_second_creeps_per_min
+    match_timelines.average(:second_creeps_per_min_deltas).round(2)
+  end
+
+  def avg_third_creeps_per_min
+    match_timelines.average(:third_creeps_per_min_deltas).round(2)
+  end
+
+  def avg_end_creeps_per_min
+    match_timelines.average(:end_creeps_per_min_deltas).round(2)
   end
 
   protected

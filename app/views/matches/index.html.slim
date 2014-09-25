@@ -14,35 +14,25 @@
         h4 Average match duration: #{@summoner.readable_avg_match_duration}
       .col-md-3
         h4 Average gold per min: #{@summoner.avg_gold_per_min}
+    .row
+      .col-md-3
+        h4 Average creeps per first ten minutes: #{@summoner.avg_first_creeps_per_min}
+      .col-md-3
+        h4 Average creeps per second ten minutes: #{@summoner.avg_second_creeps_per_min}
+      .col-md-3
+        h4 Average creeps per third ten minutes: #{@summoner.avg_third_creeps_per_min}
+      .col-md-3
+        h4 Average creeps per minute after thirty minutes: #{@summoner.avg_end_creeps_per_min}
     h3.page-header Gold Earned vs Gold Spent
     .chart-box[id="goldEarnedvsGoldSpent"]
     h3.page-header Gold Per Minute
     .chart-box[id="goldPerMin"]
-    h3.page-header Creeps Per Match
-    .chart-box[id="creepsPerMatch"]
-- @summoner.matches.each do |match|
-  ul
-    li Match Mode: #{match.match_mode}
-    li Queue Type: #{match.queue_type}
-    li Gold Earned: #{match.gold_earned}
-    li Gold Spent: #{match.gold_spent}
-    li Match creation: #{match.match_creation.to_s}
-    li Riot Match id: #{match.riot_match_id}
-    li Winner: #{match.winner}
-    li Match duration: #{match.match_duration}
-    li Kills: #{match.kills}
-    li Deaths: #{match.deaths}
-    ul
-      li first creeps per min deltas: #{match.match_timeline.first_creeps_per_min_deltas}
-      li second creeps per min deltas: #{match.match_timeline.second_creeps_per_min_deltas}
-      li third creeps per min deltas: #{match.match_timeline.third_creeps_per_min_deltas}
-      li end creeps per min deltas: #{match.match_timeline.end_creeps_per_min_deltas}
-      li first cs diff per min deltas: #{match.match_timeline.first_cs_diff_per_min_deltas}
-      li second cs diff per min deltas: #{match.match_timeline.second_cs_diff_per_min_deltas}
-      li third cs diff per min deltas: #{match.match_timeline.third_cs_diff_per_min_deltas}
-      li end cs diff per min deltas: #{match.match_timeline.end_cs_diff_per_min_deltas}
-      li first gold per min deltas: #{match.match_timeline.first_gold_per_min_deltas}
-      li second gold per min deltas: #{match.match_timeline.second_gold_per_min_deltas}
-      li third gold per min deltas: #{match.match_timeline.third_gold_per_min_deltas}
-      li end gold per min deltas: #{match.match_timeline.end_gold_per_min_deltas}
+.panel.panel-primary
+  .panel-heading
+    h3.panel-title Match History
+  .panel-body
+    .list-group
+      - @summoner.matches.each do |match|
+        == link_to "#{match.winner ? "Win" : "Loss"} on #{match.match_creation.strftime("%B %d, %Y")}, with #{match.kills} kills and #{match.deaths} deaths", summoner_match_path(@summoner, match), class: "list-group-item"
+== include_gon
 == javascript_include_tag "matches-index"
